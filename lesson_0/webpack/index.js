@@ -7,7 +7,7 @@ const BaseConfig = {
   mode: process.env.NODE_ENV,
 
   entry: {
-    app: Path("src/js/app.tsx"),
+    app: "./index.tsx",
     hot: "webpack/hot/dev-server.js",
     client: "webpack-dev-server/client/index.js?hot=true&live-reload=true"
   },
@@ -19,7 +19,8 @@ const BaseConfig = {
   },
 
   resolve: {
-    extensions: [".ts", ".tsx", ".js", ".jsx", ".scss"]
+    extensions: [".ts", ".tsx", ".js", ".jsx", ".scss"],
+    modules: [Path("src"), Path("node_modules")]
   }
 }
 

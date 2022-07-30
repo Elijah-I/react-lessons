@@ -1,21 +1,136 @@
-html,
-body,
-body > div:first-child {
-  width: 100%;
-  height: 100%;
+body {
+  font-family: "Segoe UI", sans-serif;
+  font-weight: 400;
+  font-size: 1.2rem;
+  line-height: 1.5;
 }
 
-.content {
+body > div:first-child {
   display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0 200px;
-  height: 100%;
+  padding: 20px;
+  width: 100%;
+  gap: 20px;
+}
+
+@mixin defaultBox {
+  display: flex;
+  flex-direction: column;
+  border-radius: 20px;
+  padding: 20px;
   box-sizing: border-box;
-  font: 400 60px/60px "Magra";
-  text-align: center;
-  text-shadow: 0 0 10px rgb(0, 0, 0);
-  color: rgb(255, 255, 255);
-  background-image: url("../assets/img/bg.jpg");
-  background-size: cover;
+  gap: 20px;
+}
+
+.user {
+  @include defaultBox;
+
+  flex: 0 1 33.33%;
+  background-color: rgb(184 202 218);
+
+  &__data {
+    display: flex;
+    justify-content: space-evenly;
+    min-height: 30px;
+    gap: 20px;
+
+    div {
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+}
+
+.todo {
+  @include defaultBox;
+
+  flex: 1 1 33.33%;
+  min-width: 100px;
+  background-color: rgb(184 218 199);
+
+  &__create {
+    display: flex;
+    gap: 20px;
+  }
+
+  input[type="text"] {
+    flex: 1 1 100%;
+  }
+
+  &__button {
+    display: flex;
+    flex: 0 0 30px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+    padding: 0 15px;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    color: rgb(6 36 22);
+    background-color: rgb(140 172 154);
+    transition: all 0.2s ease;
+    cursor: pointer;
+
+    &:hover {
+      color: rgb(140 172 154);
+      background-color: rgb(40 97 65);
+    }
+  }
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  &__item {
+    display: flex;
+    height: 40px;
+    gap: 20px;
+  }
+
+  &__value {
+    flex: 1 1 100%;
+    align-self: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  &__remove {
+    min-width: 59.5px;
+    background-color: rgb(172 140 140);
+  }
+
+  &__remove:hover {
+    background-color: rgb(150 65 65);
+  }
+
+  &__done {
+    min-width: 59.5px;
+    background-color: rgb(140 160 172);
+  }
+
+  &__done:hover {
+    background-color: rgb(40 81 97);
+  }
+
+  &__item_done &__value {
+    text-decoration: line-through;
+  }
+
+  &__item_done &__done {
+    color: rgb(140 172 154);
+    background-color: rgb(40 81 97);
+  }
+
+  &__item_done &__done:hover {
+    color: rgb(6 36 22);
+    background-color: rgb(140 160 172);
+  }
+}
+
+input[type="text"] {
+  outline: none;
+  border: 0;
+  border-radius: 5px;
+  padding: 10px;
 }
