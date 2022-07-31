@@ -10,13 +10,17 @@ export const Create = () => {
   const dispatch = useDispatch()
   const [todoValue, setTodoValue] = useState("")
 
-  const actionAddTodo = () => dispatch(addTodo(todoValue))
+  const actionAddTodo = () => {
+    dispatch(addTodo(todoValue))
+    setTodoValue("")
+  }
 
   return (
     <div className={css.todo__create}>
       <Input
         type="text"
         placeholder="todo"
+        value={todoValue}
         action={(e: InputEvent) => setTodoValue(e.target.value)}
       ></Input>
       <div

@@ -11,6 +11,7 @@ export interface ITodoState {
 
 export interface IInputProps {
   type: string
+  value?: string
   placeholder: string
   action: (e: InputEvent) => {} | void
 }
