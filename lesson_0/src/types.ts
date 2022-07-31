@@ -6,14 +6,13 @@ export interface IUserState {
 }
 
 export interface ITodoState {
-  current: string
   list: { id: number; value: string; done: boolean }[]
 }
 
 export interface IInputProps {
   type: string
   placeholder: string
-  action: (e: InputEvent) => {}
+  action: (e: InputEvent) => {} | void
 }
 
 export type ActionStr = PayloadAction<string>

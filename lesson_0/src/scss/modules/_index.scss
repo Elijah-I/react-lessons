@@ -25,6 +25,7 @@ body > div:first-child {
   @include defaultBox;
 
   flex: 0 1 33.33%;
+  align-self: flex-start;
   background-color: rgb(184 202 218);
 
   &__data {

@@ -2,7 +2,6 @@ import { createSlice } from "@reduxjs/toolkit"
 import { ActionStr, ActionNum, ITodoState } from "types"
 
 const initialState: ITodoState = {
-  current: "",
   list: JSON.parse(localStorage.getItem("todo.list") || "[]")
 }
 
@@ -10,10 +9,6 @@ const todoSlice = createSlice({
   name: "todo",
   initialState,
   reducers: {
-    storeTodo: (state: ITodoState, action: ActionStr) => {
-      state.current = action.payload
-    },
-
     addTodo: (state: ITodoState, action: ActionStr) => {
       state.list.push({
         id: Date.now(),
@@ -41,4 +36,4 @@ const todoSlice = createSlice({
 
 export default todoSlice.reducer
 
-export const { storeTodo, addTodo, doneTodo, deleteTodo } = todoSlice.actions
+export const { addTodo, doneTodo, deleteTodo } = todoSlice.actions
