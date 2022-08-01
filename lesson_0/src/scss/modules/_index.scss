@@ -134,11 +134,12 @@ body > div:first-child {
   }
 }
 
-.post {
+.post,
+.post__item {
   @include defaultBox;
 
   flex: 0 1 33.33%;
-  background-color: rgb(217 184 218);
+  padding: 0;
 
   &__button {
     @include defaultButton;
@@ -149,6 +150,12 @@ body > div:first-child {
     &:hover {
       background-color: rgb(92 40 97);
     }
+  }
+
+  &__item {
+    padding: 20px;
+    width: 100%;
+    background-color: rgb(217 184 218);
   }
 
   &__null {
@@ -166,10 +173,6 @@ body > div:first-child {
     margin: 0;
     padding: 0;
     font-size: 1.2rem;
-  }
-
-  p {
-    margin-bottom: 20px;
   }
 }
 

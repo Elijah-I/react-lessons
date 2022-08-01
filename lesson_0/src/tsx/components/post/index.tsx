@@ -10,11 +10,13 @@ export const Post = () => {
 
   return (
     <div className={css.post}>
-      <div
-        className={css.post__button}
-        onClick={() => dispatch(fetchPosts())}
-      >
-        request
+      <div className={css.post__item}>
+        <div
+          className={css.post__button}
+          onClick={() => dispatch(fetchPosts())}
+        >
+          request
+        </div>
       </div>
       <PostList></PostList>
     </div>

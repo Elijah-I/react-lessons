@@ -1,4 +1,4 @@
-import { PayloadAction, AsyncThunkAction } from "@reduxjs/toolkit"
+import { PayloadAction } from "@reduxjs/toolkit"
 
 export interface IUserState {
   firstName: string
@@ -26,7 +26,7 @@ export interface ILoadingProps {
   noContent: boolean
   isFetching: boolean
   error: string | null
-  children: JSX.Element
+  children: JSX.Element[]
 }
 
 export type Post = {

@@ -22,7 +22,7 @@ export const PostList = () => {
       isFetching={fetching}
       noContent={posts.length === 0}
     >
-      <div className={css.post__list}>{postsHTML}</div>
+      {postsHTML}
     </WithLoading>
   )
 }
