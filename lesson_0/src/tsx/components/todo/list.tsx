@@ -14,6 +14,8 @@ export const List = () => {
 
   useEffect(() => {
     const list = JSON.parse(localStorage.getItem("todo.list") || "[]")
+    console.log(list)
+
     dispatch(initTodo(list))
   }, [])
 
