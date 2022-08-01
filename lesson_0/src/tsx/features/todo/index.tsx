@@ -1,14 +1,18 @@
 import { createSlice } from "@reduxjs/toolkit"
-import { ActionStr, ActionNum, ITodoState } from "types"
+import { ActionStr, ActionNum, ActionTodo, ITodoState } from "types"
 
 const initialState: ITodoState = {
-  list: JSON.parse(localStorage.getItem("todo.list") || "[]")
+  list: []
 }
 
 const todoSlice = createSlice({
   name: "todo",
   initialState,
   reducers: {
+    initTodo: (state: ITodoState, action: ActionTodo) => {
+      state.list = action.payload
+    },
+
     addTodo: (state: ITodoState, action: ActionStr) => {
       state.list.push({
         id: Date.now(),
@@ -36,4 +40,4 @@ const todoSlice = createSlice({
 
 export default todoSlice.reducer
 
-export const { addTodo, doneTodo, deleteTodo } = todoSlice.actions
+export const { initTodo, addTodo, doneTodo, deleteTodo } = todoSlice.actions

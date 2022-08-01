@@ -1,9 +1,9 @@
-import React from "react"
+import React, { useEffect } from "react"
 import css from "scss/app.module.scss"
 
 import { useDispatch } from "react-redux"
 import { useSelector } from "tsx/hooks/useSelector"
-import { doneTodo, deleteTodo } from "tsx/features/todo"
+import { initTodo, doneTodo, deleteTodo } from "tsx/features/todo"
 
 export const List = () => {
   const todoList = useSelector((state) => state.todo.list)
@@ -11,6 +11,11 @@ export const List = () => {
   const dispatch = useDispatch()
   const actionDoneTodo = (id: number) => dispatch(doneTodo(id))
   const actionDeleteTodo = (id: number) => dispatch(deleteTodo(id))
+
+  useEffect(() => {
+    const list = JSON.parse(localStorage.getItem("todo.list") || "[]")
+    dispatch(initTodo(list))
+  }, [])
 
   const todoListHTML = todoList.map((todo) => {
     const classes = {

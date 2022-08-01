@@ -5,12 +5,14 @@ export interface IUserState {
   lastName?: string
 }
 
+type Todo = {
+  id: number
+  value: string
+  done: boolean
+}
+
 export interface ITodoState {
-  list: {
-    id: number
-    value: string
-    done: boolean
-  }[]
+  list: Todo[]
 }
 
 export interface IInputProps {
@@ -49,6 +51,7 @@ export type Thunk = any & {
 export type ActionStr = PayloadAction<string>
 export type ActionNum = PayloadAction<number>
 export type ActionPost = PayloadAction<Post[]>
+export type ActionTodo = PayloadAction<Todo[]>
 export type ActionBool = PayloadAction<boolean>
 
 export type InputEvent = React.ChangeEvent<HTMLInputElement>
