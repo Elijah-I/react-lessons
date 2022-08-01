@@ -1,7 +1,7 @@
 import { Post, Thunk, IPostState, ActionPost, ActionStr } from "types"
 import { createAsyncThunk } from "@reduxjs/toolkit"
 import { createSlice } from "@reduxjs/toolkit"
-import axios from "axios"
+import axios, { AxiosError } from "axios"
 
 const initialState: IPostState = {
   fetching: false,
@@ -11,12 +11,16 @@ const initialState: IPostState = {
 
 export const fetchPosts: Thunk = createAsyncThunk(
   "post/fetchPosts",
-  async () => {
-    const posts: { data: Post[] } = await axios.get(
-      "https://jsonplaceholder.typicode.com/posts?_limit=10"
-    )
-
-    return posts.data
+  async (_, thunkAPI) => {
+    try {
+      const posts: { data: Post[] } = await axios.get(
+        "https://jsonplaceholder.typicode.com/posts?_limit=10"
+      )
+      return posts.data
+    } catch (error) {
+      const err = error as AxiosError
+      return thunkAPI.rejectWithValue(err.message)
+    }
   }
 )
 
@@ -36,7 +40,7 @@ const postSlice = createSlice({
       state.list = []
     },
     [fetchPosts.pending]: (state: IPostState) => {
-      state.fetching = true
+      state.error = null
       state.fetching = true
     }
   }
