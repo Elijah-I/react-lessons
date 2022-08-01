@@ -11,7 +11,7 @@ const initialState: IPostState = {
 
 export const fetchPosts: Thunk = createAsyncThunk(
   "post/fetchPosts",
-  async (_, thunkAPI) => {
+  async (_, { rejectWithValue }) => {
     try {
       const posts: { data: Post[] } = await axios.get(
         "https://jsonplaceholder.typicode.com/posts?_limit=10"
@@ -19,7 +19,7 @@ export const fetchPosts: Thunk = createAsyncThunk(
       return posts.data
     } catch (error) {
       const err = error as AxiosError
-      return thunkAPI.rejectWithValue(err.message)
+      return rejectWithValue(err.message)
     }
   }
 )
