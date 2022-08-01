@@ -15,17 +15,37 @@ body > div:first-child {
 @mixin defaultBox {
   display: flex;
   flex-direction: column;
+  align-self: flex-start;
   border-radius: 20px;
   padding: 20px;
   box-sizing: border-box;
   gap: 20px;
 }
 
+@mixin defaultButton {
+  display: flex;
+  flex: 0 0 30px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+  padding: 0 15px;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  color: rgb(39 39 39);
+  background-color: rgb(140 172 154);
+  transition: all 0.2s ease;
+  cursor: pointer;
+
+  &:hover {
+    color: rgb(255 255 255);
+    background-color: rgb(40 97 65);
+  }
+}
+
 .user {
   @include defaultBox;
 
   flex: 0 1 33.33%;
-  align-self: flex-start;
   background-color: rgb(184 202 218);
 
   &__data {
@@ -45,7 +65,7 @@ body > div:first-child {
   @include defaultBox;
 
   flex: 1 1 33.33%;
-  min-width: 100px;
+  min-width: 33%;
   background-color: rgb(184 218 199);
 
   &__create {
@@ -55,26 +75,11 @@ body > div:first-child {
 
   input[type="text"] {
     flex: 1 1 100%;
+    min-width: 50%;
   }
 
   &__button {
-    display: flex;
-    flex: 0 0 30px;
-    align-items: center;
-    justify-content: center;
-    border-radius: 5px;
-    padding: 0 15px;
-    font-size: 0.9rem;
-    text-transform: uppercase;
-    color: rgb(6 36 22);
-    background-color: rgb(140 172 154);
-    transition: all 0.2s ease;
-    cursor: pointer;
-
-    &:hover {
-      color: rgb(140 172 154);
-      background-color: rgb(40 97 65);
-    }
+    @include defaultButton;
   }
 
   &__list {
@@ -129,9 +134,65 @@ body > div:first-child {
   }
 }
 
+.post {
+  @include defaultBox;
+
+  flex: 0 1 33.33%;
+  background-color: rgb(217 184 218);
+
+  &__button {
+    @include defaultButton;
+
+    flex: 0 0 40px;
+    background-color: rgb(195 118 202);
+
+    &:hover {
+      background-color: rgb(92 40 97);
+    }
+  }
+
+  &__null {
+    text-align: center;
+    color: rgb(92 40 97);
+  }
+
+  &__error {
+    text-align: center;
+    color: rgb(134 12 12);
+  }
+
+  h2,
+  p {
+    margin: 0;
+    padding: 0;
+    font-size: 1.2rem;
+  }
+
+  p {
+    margin-bottom: 20px;
+  }
+}
+
 input[type="text"] {
   outline: none;
   border: 0;
   border-radius: 5px;
   padding: 10px;
+}
+
+@media (max-width: 1150px) {
+  body {
+    font-size: 0.9rem;
+  }
+
+  body > div:first-child {
+    flex-direction: column;
+  }
+
+  .user,
+  .todo,
+  .post {
+    flex-basis: 100%;
+    min-width: 100%;
+  }
 }

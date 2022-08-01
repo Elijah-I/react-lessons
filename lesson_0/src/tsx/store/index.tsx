@@ -2,11 +2,13 @@ import { configureStore } from "@reduxjs/toolkit"
 
 import userSlice from "tsx/features/user"
 import todoSlice from "tsx/features/todo"
+import postSlice from "tsx/features/post"
 
 const store = configureStore({
   reducer: {
     user: userSlice,
-    todo: todoSlice
+    todo: todoSlice,
+    post: postSlice
   }
 })
 
