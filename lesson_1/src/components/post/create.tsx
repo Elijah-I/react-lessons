@@ -5,23 +5,28 @@ import { addPost } from "features/post/postSlice"
 import style from "./index.module.scss"
 import Input from "components/UI/input"
 import Button from "components/UI/button"
-import useInput from "hooks/useInput"
+
+import { toggleModal } from "features/modal/modalSlice"
 
 const Create = () => {
-  const [title, setTitle] = useInput()
-  const [content, setContent] = useInput()
-
   const dispatch = useDispatch()
+
+  const [title, setTitle] = useState("")
+  const [content, setContent] = useState("")
+
   const addPostAction = () => {
-    const post = {
-      id: Date.now(),
-      show: true,
-      title,
-      content
-    }
+    dispatch(
+      addPost({
+        id: Date.now(),
+        show: true,
+        title,
+        content
+      })
+    )
+
     setTitle("")
     setContent("")
-    dispatch(addPost(post))
+    dispatch(toggleModal())
   }
 
   return (

@@ -6,7 +6,7 @@
   ],
   "extends": ["stylelint-config-standard"],
   "rules": {
-    "function-no-unknown": true,
+    "function-no-unknown": null,
     "order/order": [
       "custom-properties",
       "dollar-variables",
@@ -567,7 +567,7 @@
     "function-url-quotes": "always",
     "function-url-scheme-disallowed-list": null,
     "function-url-scheme-allowed-list": null,
-    "function-allowed-list": ["transparentize"],
+    "function-allowed-list": ["transparentize", "rgb", "calc"],
     "function-whitespace-after": "always",
     "indentation": 2,
     "keyframe-declaration-no-important": true,
