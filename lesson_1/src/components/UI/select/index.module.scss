@@ -1,0 +1,36 @@
+@import "~/scss/var.module";
+
+.container {
+  position: relative;
+  align-self: flex-start;
+
+  &::after {
+    content: "";
+    position: absolute;
+    right: 15px;
+    top: 14px;
+    z-index: -1;
+    display: block;
+    border: 7px solid transparent;
+    border-top: 9px solid transparentize($violet, 0.5);
+    transition: all 0.2s ease;
+  }
+
+  select {
+    appearance: none;
+    margin-right: 30px;
+    outline: none;
+    border: 1px solid transparentize($violet, 0.5);
+    border-radius: 20px;
+    padding: 0 15px 4px;
+    width: 100%;
+    height: 36.7px;
+    font-size: 1rem;
+    background-color: transparent;
+    cursor: pointer;
+  }
+
+  &:hover::after {
+    border-top-color: transparentize($violet, 0.2);
+  }
+}

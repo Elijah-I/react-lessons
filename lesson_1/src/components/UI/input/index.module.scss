@@ -1,0 +1,11 @@
+@import "~/scss/var.module";
+
+input[type="text"] {
+  outline: none;
+  border: 1px solid transparentize($violet, 0.5);
+  border-radius: 20px;
+  padding: 15px;
+  padding-top: 11px;
+  height: 36.7px;
+  font-size: 1rem;
+}

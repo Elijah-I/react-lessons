@@ -1,0 +1,23 @@
+@import "~/scss/var.module";
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  overflow: hidden overlay;
+  padding-right: 10px;
+  width: 100vw;
+  height: 100vh;
+}
+
+::-webkit-scrollbar {
+  width: 14px;
+}
+
+::-webkit-scrollbar-thumb {
+  border: 1px solid transparentize($violet, 0.7);
+  border-radius: 7px;
+  box-sizing: border-box;
+  background-color: transparentize($violet, 0.8);
+}
