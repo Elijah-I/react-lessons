@@ -2,15 +2,17 @@ import { createSlice } from "@reduxjs/toolkit"
 import { IModalState } from "types"
 
 const initialState: IModalState = {
-  active: false
+  active: false,
+  type: null
 }
 
 const modalSlice = createSlice({
   name: "modal",
   initialState,
   reducers: {
-    toggleModal: (state) => {
+    toggleModal: (state, action) => {
       state.active = !state.active
+      state.type = action.payload
     }
   }
 })

@@ -22,10 +22,6 @@ export interface ISelectProps {
   callback: (value: keyof Post) => void
 }
 
-export interface IModalProps {
-  content: JSX.Element | JSX.Element[]
-}
-
 export type Post = {
   id: number
   show: boolean
@@ -37,6 +33,12 @@ export interface IPostState {
   list: Post[]
 }
 
+export enum Popup {
+  Auth,
+  AddPost
+}
+
 export interface IModalState {
   active: boolean
+  type: Popup | null
 }

@@ -1,6 +1,7 @@
 import React from "react"
 import { useDispatch } from "react-redux"
 
+import { Popup } from "types"
 import Button from "components/UI/button"
 
 import { toggleModal } from "features/modal/modalSlice"
@@ -11,7 +12,7 @@ const Create = () => {
   return (
     <Button
       size="medium"
-      action={() => dispatch(toggleModal())}
+      action={() => dispatch(toggleModal(Popup.AddPost))}
     >
       add post
     </Button>

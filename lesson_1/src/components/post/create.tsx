@@ -2,7 +2,9 @@ import React, { useState } from "react"
 import { useDispatch } from "react-redux"
 import { addPost } from "features/post/postSlice"
 
+import { Popup } from "types"
 import style from "./index.module.scss"
+
 import Input from "components/UI/input"
 import Button from "components/UI/button"
 
@@ -26,7 +28,7 @@ const Create = () => {
 
     setTitle("")
     setContent("")
-    dispatch(toggleModal())
+    dispatch(toggleModal(Popup.AddPost))
   }
 
   return (

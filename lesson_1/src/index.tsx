@@ -4,10 +4,13 @@ import * as ReactDOM from "react-dom/client"
 
 import store from "store"
 import "./scss/app.module"
+
 import Posts from "./components/post"
+import Modal from "components/UI/modal"
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <Provider store={store}>
+    <Modal />
     <Posts />
   </Provider>
 )
