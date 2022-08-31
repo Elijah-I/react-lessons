@@ -1,32 +1,34 @@
 import React, { useEffect } from "react"
+import { useSelector } from "hooks/useSelector"
 
 import style from "./index.module.scss"
 import Button from "components/UI/button"
-import { setPosts, deletePost } from "features/post/postSlice"
-import { useDispatch } from "react-redux"
-import { useSelector } from "hooks/useSelector"
+import { deletePost } from "features/post/postSlice"
+import { fetchPosts } from "features/post/postThunk"
+
+import WithLoading from "hoc/withLoading"
+import WithTransition from "hoc/withTransition"
+import { useDispatch } from "hooks/useDispatch"
 
 const List = () => {
+  const dispatch = useDispatch()
+  const { list, fetching } = useSelector((state) => state.posts)
+
   useEffect(() => {
-    const list = JSON.parse(localStorage.getItem("post.list") || "[]")
-    dispatch(setPosts(list))
+    dispatch(fetchPosts())
   }, [])
 
-  let shown = 0
-  const dispatch = useDispatch()
-  const list = useSelector((state) => state.posts.list)
-
   const posts = list.map((post) => {
-    if (!post.show) return
-    shown++
+    if (!post.show) return <div key={post.id}></div>
+
     return (
       <div
-        className={style.posts__item}
         key={post.id}
+        className={style.posts__item}
       >
         <div>
           <h2>{post.title}</h2>
-          <p>{post.content}</p>
+          <p>{post.body}</p>
         </div>
         <Button
           action={() => dispatch(deletePost(post.id))}
@@ -38,9 +40,25 @@ const List = () => {
     )
   })
 
-  const posts_null = <div className={style.posts__null}>no posts yet</div>
+  const posts_null = (
+    <div
+      key={0}
+      className={style.posts__null}
+    >
+      no posts yet
+    </div>
+  )
 
-  return <>{shown ? posts : posts_null}</>
+  return (
+    <WithLoading loading={fetching}>
+      <WithTransition
+        classNM={style.posts}
+        classID="post"
+      >
+        {posts.length ? posts : posts_null}
+      </WithTransition>
+    </WithLoading>
+  )
 }
 
 export default List

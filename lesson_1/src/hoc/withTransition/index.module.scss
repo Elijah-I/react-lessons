@@ -1,0 +1,23 @@
+@import "~/scss/var.module";
+
+.post_enter,
+.post_exit {
+  opacity: 0;
+  margin: 0;
+  padding: 0;
+  max-height: 0px;
+  transform: translateX(-350px);
+}
+
+.post_active {
+  opacity: 1;
+  padding: 30px;
+  margin: 0 10px;
+  max-height: 200px;
+  transform: translateX(0);
+}
+
+.post_exit,
+.post_active {
+  transition: all 500ms ease;
+}

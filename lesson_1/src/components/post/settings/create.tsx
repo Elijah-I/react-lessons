@@ -1,5 +1,5 @@
 import React from "react"
-import { useDispatch } from "react-redux"
+import { useDispatch } from "hooks/useDispatch"
 
 import { Popup } from "types"
 import Button from "components/UI/button"

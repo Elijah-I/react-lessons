@@ -1,6 +1,5 @@
 import { Post, Thunk, IPostState, ActionPost, ActionStr } from "types"
-import { createAsyncThunk } from "@reduxjs/toolkit"
-import { createSlice } from "@reduxjs/toolkit"
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
 import axios, { AxiosError } from "axios"
 
 const initialState: IPostState = {

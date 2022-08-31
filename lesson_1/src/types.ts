@@ -22,15 +22,31 @@ export interface ISelectProps {
   callback: (value: keyof Post) => void
 }
 
+export interface ITransitionProps {
+  children: JSX.Element | JSX.Element[]
+  classNM: string
+  classID: string
+}
+
+export interface ILoadingProps {
+  children: JSX.Element | JSX.Element[]
+  loading: boolean
+}
+
 export type Post = {
   id: number
   show: boolean
   title: string
-  content: string
+  body: string
 }
 
 export interface IPostState {
   list: Post[]
+  fetching: boolean
+}
+
+export interface IPostAction {
+  payload: Post[]
 }
 
 export enum Popup {

@@ -1,7 +1,7 @@
 import React from "react"
 import Select from "components/UI/select"
 import { sortPosts } from "features/post/postSlice"
-import { useDispatch } from "react-redux"
+import { useDispatch } from "hooks/useDispatch"
 
 const Sort = () => {
   const dispatch = useDispatch()

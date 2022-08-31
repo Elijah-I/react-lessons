@@ -1,5 +1,5 @@
 import { useSelector } from "hooks/useSelector"
-import { useDispatch } from "react-redux"
+import { useDispatch } from "hooks/useDispatch"
 import React from "react"
 
 import { Popup } from "types"

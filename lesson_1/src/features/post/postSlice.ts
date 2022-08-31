@@ -1,21 +1,26 @@
 import { createSlice } from "@reduxjs/toolkit"
 import { IPostState, Post } from "types"
+import { postThunk } from "./postThunk"
 
 const initialState: IPostState = {
-  list: []
+  list: [],
+  fetching: false
 }
 
 const postSlice = createSlice({
   name: "post",
   initialState,
+
   reducers: {
     setPosts: (state: IPostState, action) => {
       state.list = action.payload
     },
+
     addPost: (state: IPostState, action) => {
-      state.list.push(action.payload)
+      state.list.unshift(action.payload)
       localStorage.setItem("post.list", JSON.stringify(state.list))
     },
+
     deletePost: (state: IPostState, action) => {
       state.list = state.list.filter((post) => post.id !== action.payload)
       localStorage.setItem("post.list", JSON.stringify(state.list))
@@ -34,10 +39,14 @@ const postSlice = createSlice({
           state.list[i].title
             .toLowerCase()
             .includes(action.payload.toLowerCase()) ||
-          state.list[i].content
+          state.list[i].body
             .toLowerCase()
             .includes(action.payload.toLowerCase())
     }
+  },
+
+  extraReducers: (builder) => {
+    postThunk(builder)
   }
 })
 

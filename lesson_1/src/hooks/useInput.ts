@@ -1,6 +1,6 @@
 import { AnyAction } from "@reduxjs/toolkit"
 import { useEffect, useRef, useState, Dispatch } from "react"
-import { useDispatch } from "react-redux"
+import { useDispatch } from "hooks/useDispatch"
 
 type Action = (value: string) => AnyAction
 type SetAction = (action: Action) => void

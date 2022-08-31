@@ -3,14 +3,13 @@
 .posts {
   display: flex;
   flex-direction: column;
-  padding: 0 20px;
-  gap: 30px;
+  padding: 10px 20px;
 
   &__settings {
     display: flex;
     justify-content: space-between;
     border-bottom: 1px dotted transparentize($violet, 0.5);
-    padding: 30px 0;
+    padding: 30px;
     gap: 30px;
   }
 
@@ -27,6 +26,7 @@
     justify-content: space-between;
     border-radius: 20px;
     padding: 30px;
+    margin: 10px 0;
     background-color: transparentize($violet, 0.95);
 
     h2,
@@ -53,6 +53,8 @@
     font-size: 1.5rem;
     text-align: center;
     text-transform: uppercase;
+    padding: 20px !important;
+    transform: none !important;
     color: transparentize($violet, 0.5);
   }
 }

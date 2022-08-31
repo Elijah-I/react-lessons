@@ -1,9 +1,9 @@
 import React, { useState } from "react"
-import { useDispatch } from "react-redux"
 import { addPost } from "features/post/postSlice"
 
 import { Popup } from "types"
 import style from "./index.module.scss"
+import { useDispatch } from "hooks/useDispatch"
 
 import Input from "components/UI/input"
 import Button from "components/UI/button"
@@ -14,7 +14,7 @@ const Create = () => {
   const dispatch = useDispatch()
 
   const [title, setTitle] = useState("")
-  const [content, setContent] = useState("")
+  const [body, setBody] = useState("")
 
   const addPostAction = () => {
     dispatch(
@@ -22,12 +22,12 @@ const Create = () => {
         id: Date.now(),
         show: true,
         title,
-        content
+        body
       })
     )
 
     setTitle("")
-    setContent("")
+    setBody("")
     dispatch(toggleModal(Popup.AddPost))
   }
 
@@ -41,8 +41,8 @@ const Create = () => {
       />
       <Input
         type="text"
-        value={content}
-        callback={(e) => setContent(e.target.value)}
+        value={body}
+        callback={(e) => setBody(e.target.value)}
         placeholder="content"
       />
       <Button
