@@ -9,7 +9,7 @@ const Sort = () => {
   return (
     <Select callback={(by: any) => dispatch(sortPosts(by))}>
       <option value="title">By title</option>
-      <option value="content">By content</option>
+      <option value="body">By content</option>
     </Select>
   )
 }

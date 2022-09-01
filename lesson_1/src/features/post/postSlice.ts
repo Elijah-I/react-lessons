@@ -27,7 +27,7 @@ const postSlice = createSlice({
     },
 
     sortPosts: (state: IPostState, action: { payload: keyof Post }) => {
-      state.list = state.list.sort((a, b) =>
+      state.list.sort((a, b) =>
         a[action.payload].toString().localeCompare(b[action.payload].toString())
       )
     },
