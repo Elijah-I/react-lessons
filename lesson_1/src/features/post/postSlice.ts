@@ -5,7 +5,7 @@ import { postThunk } from "./postThunk"
 const initialState: IPostState = {
   list: [],
   pages: {
-    total: 0,
+    total: 1,
     limit: 10,
     current: 1
   },
@@ -50,7 +50,12 @@ const postSlice = createSlice({
     },
 
     switchPage: (state: IPostState, action) => {
-      state.pages.current = action.payload
+      state.pages.current = +action.payload
+    },
+
+    setLimit: (state: IPostState, action) => {
+      state.pages.current = 1
+      state.pages.limit = +action.payload
     }
   },
 
@@ -66,5 +71,6 @@ export const {
   findPosts,
   addPost,
   deletePost,
-  switchPage
+  switchPage,
+  setLimit
 } = postSlice.actions

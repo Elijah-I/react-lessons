@@ -13,9 +13,7 @@ const FP_fullfiled = (state: IPostState, action: { payload: IPostAction }) => {
   state.fetching = false
 
   state.list = action.payload.data.map((el) => ({ ...el, show: true }))
-
-  if (!state.pages.total)
-    state.pages.total = action.payload.headers["x-total-count"]
+  state.pages.total = +action.payload.headers["x-total-count"]
 }
 
 const FP_pending = (state: IPostState) => {
