@@ -1,5 +1,4 @@
 import React, { useEffect } from "react"
-import { useSelector } from "hooks/useSelector"
 
 import style from "../index.module.scss"
 
@@ -8,14 +7,13 @@ import Select from "components/UI/select"
 
 import { IPagesProps } from "types"
 import { useDispatch } from "hooks/useDispatch"
-import { fetchPosts } from "features/post/postThunk"
 import { switchPage, setLimit } from "features/post/postSlice"
 
-const Pages: React.FC<IPagesProps> = ({ total, limit, current }) => {
+const Pages: React.FC<IPagesProps> = ({ total, limit, current, callback }) => {
   const dispatch = useDispatch()
 
   useEffect(() => {
-    dispatch(fetchPosts({ limit, current }))
+    dispatch(callback({ limit, current }))
   }, [limit, current])
 
   const pages = getPages(total, limit).map((_, i) => {

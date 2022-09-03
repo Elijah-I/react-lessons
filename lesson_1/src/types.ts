@@ -4,10 +4,15 @@ export type DispatchBool = (value: boolean) => void
 export type InputEvent = React.ChangeEvent<HTMLInputElement>
 export type SelectEvent = React.ChangeEvent<HTMLSelectElement>
 
+export type PagesCallback = {
+  limit: number
+  current: number
+}
 export interface IPagesProps {
   total: number
   limit: number
   current: number
+  callback: (arg: PagesCallback) => any
 }
 
 export interface IButtonProps {

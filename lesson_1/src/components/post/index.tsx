@@ -1,18 +1,23 @@
 import React from "react"
 
+import { fetchPosts } from "features/post/postThunk"
 import { useSelector } from "hooks/useSelector"
+import { PagesCallback } from "types"
 
 import Settings from "./settings"
 import Pages from "./pages"
 import List from "./list"
 
 const Posts = () => {
-  const pagesProps = useSelector((state) => state.posts.pages)
+  const props = {
+    ...useSelector((state) => state.posts.pages),
+    callback: (arg: PagesCallback) => fetchPosts(arg)
+  }
 
   return (
     <>
       <Settings />
-      <Pages {...pagesProps} />
+      <Pages {...props} />
       <List />
     </>
   )
