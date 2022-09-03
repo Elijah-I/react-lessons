@@ -1,0 +1,14 @@
+@import "~/scss/var.module";
+
+.content {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0 50px;
+
+  &::before {
+    content: "";
+    width: 100%;
+    height: $header-h;
+    display: block;
+  }
+}

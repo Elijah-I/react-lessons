@@ -3,15 +3,15 @@
   width: 100%;
   position: fixed;
   left: 0;
-  top: 98px;
+  bottom: 0;
   z-index: 1;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 20px;
-  padding-top: 30px;
-  padding-bottom: 10px;
-  background-color: #ffffff;
+  padding: 30px 0;
+  background-color: $violet-85;
+  border-top: 1px dotted transparentize($violet, 0.5);
 
   &__item {
     width: 30px;

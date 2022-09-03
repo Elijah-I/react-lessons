@@ -4,6 +4,14 @@ export type DispatchBool = (value: boolean) => void
 export type InputEvent = React.ChangeEvent<HTMLInputElement>
 export type SelectEvent = React.ChangeEvent<HTMLSelectElement>
 
+export interface IWithChildren {
+  children: JSX.Element | JSX.Element[]
+}
+
+export interface IWithRoute {
+  route: string
+}
+
 export type PagesCallback = {
   limit: number
   current: number
@@ -28,19 +36,16 @@ export interface IInputProps {
   callback: (e: InputEvent) => {} | void
 }
 
-export interface ISelectProps {
-  children: JSX.Element | JSX.Element[]
+export interface ISelectProps extends IWithChildren {
   callback: (value: keyof Post) => void
 }
 
-export interface ITransitionProps {
-  children: JSX.Element | JSX.Element[]
+export interface ITransitionProps extends IWithChildren {
   classNM: string
   classID: string
 }
 
-export interface ILoadingProps {
-  children: JSX.Element | JSX.Element[]
+export interface ILoadingProps extends IWithChildren {
   loading: boolean
 }
 

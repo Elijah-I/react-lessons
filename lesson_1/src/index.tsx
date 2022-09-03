@@ -5,13 +5,24 @@ import * as ReactDOM from "react-dom/client"
 import store from "store"
 import "./scss/app.module"
 
-import Posts from "./components/post"
+import Posts from "./pages/posts"
+import About from "./pages/about"
 import Modal from "components/UI/modal"
+import Header from "components/UI/header"
+
+import WithRouter from "hoc/withRouter"
+import WithContent from "hoc/withContent"
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <Provider store={store}>
-    <Modal />
-    <Posts />
+    <WithContent>
+      <Modal />
+      <WithRouter>
+        <Header />
+        <Posts route="/posts" />
+        <About route="/about" />
+      </WithRouter>
+    </WithContent>
   </Provider>
 )
 
