@@ -1,7 +1,7 @@
 import React, { useEffect } from "react"
 import { useSelector } from "hooks/useSelector"
 
-import style from "./index.module.scss"
+import style from "../index.module.scss"
 import Button from "components/UI/button"
 import { deletePost } from "features/post/postSlice"
 import { fetchPosts } from "features/post/postThunk"
@@ -12,10 +12,14 @@ import { useDispatch } from "hooks/useDispatch"
 
 const List = () => {
   const dispatch = useDispatch()
-  const { list, fetching } = useSelector((state) => state.posts)
+  const {
+    list,
+    fetching,
+    pages: { limit, current }
+  } = useSelector((state) => state.posts)
 
   useEffect(() => {
-    dispatch(fetchPosts())
+    dispatch(fetchPosts({ limit, current }))
   }, [])
 
   const posts = list.map((post) => {

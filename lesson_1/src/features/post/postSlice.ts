@@ -4,6 +4,11 @@ import { postThunk } from "./postThunk"
 
 const initialState: IPostState = {
   list: [],
+  pages: {
+    total: 0,
+    limit: 10,
+    current: 1
+  },
   fetching: false
 }
 
@@ -42,6 +47,10 @@ const postSlice = createSlice({
           state.list[i].body
             .toLowerCase()
             .includes(action.payload.toLowerCase())
+    },
+
+    switchPage: (state: IPostState, action) => {
+      state.pages.current = action.payload
     }
   },
 
@@ -51,5 +60,11 @@ const postSlice = createSlice({
 })
 
 export default postSlice.reducer
-export const { setPosts, sortPosts, findPosts, addPost, deletePost } =
-  postSlice.actions
+export const {
+  setPosts,
+  sortPosts,
+  findPosts,
+  addPost,
+  deletePost,
+  switchPage
+} = postSlice.actions

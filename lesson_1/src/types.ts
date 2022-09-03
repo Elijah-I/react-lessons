@@ -42,11 +42,22 @@ export type Post = {
 
 export interface IPostState {
   list: Post[]
+  pages: {
+    limit: number
+    total: number
+    current: number
+  }
   fetching: boolean
 }
 
 export interface IPostAction {
-  payload: Post[]
+  data: Post[]
+  headers: { "x-total-count": number }
+}
+
+export interface IThunkData {
+  limit: number
+  current: number
 }
 
 export enum Popup {

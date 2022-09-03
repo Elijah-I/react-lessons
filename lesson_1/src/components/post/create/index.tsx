@@ -2,7 +2,7 @@ import React, { useState } from "react"
 import { addPost } from "features/post/postSlice"
 
 import { Popup } from "types"
-import style from "./index.module.scss"
+import style from "../index.module.scss"
 import { useDispatch } from "hooks/useDispatch"
 
 import Input from "components/UI/input"
