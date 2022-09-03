@@ -5,7 +5,7 @@ import { useSelector } from "hooks/useSelector"
 import { PagesCallback } from "types"
 
 import Settings from "./settings"
-import Pages from "./pages"
+import Pages from "../UI/pages"
 import List from "./list"
 
 const Posts = () => {

@@ -1,6 +1,6 @@
 import React, { useEffect } from "react"
 
-import style from "../index.module.scss"
+import style from "./index.module.scss"
 
 import { getPages } from "utils/pages"
 import Select from "components/UI/select"
