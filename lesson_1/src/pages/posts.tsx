@@ -4,9 +4,9 @@ import { fetchPosts } from "features/post/postThunk"
 import { useSelector } from "hooks/useSelector"
 import { PagesCallback } from "types"
 
-import Settings from "./settings"
-import Pages from "../UI/pages"
-import List from "./list"
+import Settings from "../components/posts/settings"
+import List from "../components/posts/list"
+import Pages from "../components/UI/pages"
 
 const Posts = () => {
   const props = {

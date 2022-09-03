@@ -5,7 +5,7 @@ import React from "react"
 import { Popup } from "types"
 import style from "./index.module.scss"
 
-import AddPost from "components/post/create"
+import AddPost from "components/posts/create"
 import { toggleModal } from "features/modal/modalSlice"
 
 const Modal = () => {

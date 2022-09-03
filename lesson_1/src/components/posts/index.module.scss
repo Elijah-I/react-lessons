@@ -4,8 +4,15 @@
   display: flex;
   flex-direction: column;
   padding: 10px 20px;
+  padding-top: 170px;
 
   &__settings {
+    width: 100%;
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 1;
+    background-color: #ffffff;
     display: flex;
     justify-content: space-between;
     border-bottom: 1px dotted transparentize($violet, 0.5);
