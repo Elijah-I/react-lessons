@@ -4,6 +4,12 @@ export type DispatchBool = (value: boolean) => void
 export type InputEvent = React.ChangeEvent<HTMLInputElement>
 export type SelectEvent = React.ChangeEvent<HTMLSelectElement>
 
+export interface IPagesProps {
+  total: number
+  limit: number
+  current: number
+}
+
 export interface IButtonProps {
   size: "small" | "medium" | "large"
   children: string

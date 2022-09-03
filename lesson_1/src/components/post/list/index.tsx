@@ -31,7 +31,9 @@ const List = () => {
         className={style.posts__item}
       >
         <div>
-          <h2>{post.title}</h2>
+          <h2>
+            {post.id}. {post.title}
+          </h2>
           <p>{post.body}</p>
         </div>
         <Button

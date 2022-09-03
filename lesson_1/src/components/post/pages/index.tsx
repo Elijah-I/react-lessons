@@ -6,13 +6,13 @@ import style from "../index.module.scss"
 import { getPages } from "utils/pages"
 import Select from "components/UI/select"
 
+import { IPagesProps } from "types"
 import { useDispatch } from "hooks/useDispatch"
 import { fetchPosts } from "features/post/postThunk"
 import { switchPage, setLimit } from "features/post/postSlice"
 
-const Pages = () => {
+const Pages: React.FC<IPagesProps> = ({ total, limit, current }) => {
   const dispatch = useDispatch()
-  const { total, limit, current } = useSelector((state) => state.posts.pages)
 
   useEffect(() => {
     dispatch(fetchPosts({ limit, current }))
