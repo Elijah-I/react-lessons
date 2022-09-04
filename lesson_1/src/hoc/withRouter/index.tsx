@@ -1,14 +1,18 @@
 import React from "react"
-import { IWithChildren } from "types"
 import {
   BrowserRouter as Router,
   Navigate as Redirect,
   Routes as Switch,
-  Route
+  Route,
+  useLocation
 } from "react-router-dom"
 
-const WithRouter: React.FC<IWithChildren> = ({ children }) => {
+import { IWithChildren } from "types"
+import WithTransition from "hoc/withTransition"
+
+const AnimatedRoutes: React.FC<IWithChildren> = ({ children }) => {
   const offSwitch: typeof children[] = []
+  const location = useLocation()
 
   const content = React.Children.map(children, (child: any) => {
     if ("route" in child.props)
@@ -30,9 +34,27 @@ const WithRouter: React.FC<IWithChildren> = ({ children }) => {
   )
 
   return (
-    <Router>
+    <>
       {offSwitch}
-      <Switch>{content}</Switch>
+      <WithTransition
+        classNM=""
+        classID="fade"
+      >
+        <Switch
+          location={location}
+          key={location.pathname}
+        >
+          {content}
+        </Switch>
+      </WithTransition>
+    </>
+  )
+}
+
+const WithRouter: React.FC<IWithChildren> = ({ children }) => {
+  return (
+    <Router>
+      <AnimatedRoutes>{children}</AnimatedRoutes>
     </Router>
   )
 }

@@ -7,7 +7,7 @@
   padding: 110px 0;
 
   &__settings {
-    width: 100%;
+    width: 100vw;
     position: fixed;
     left: 0;
     z-index: 1;
@@ -16,6 +16,7 @@
     justify-content: space-between;
     border-bottom: 1px dotted transparentize($violet, 0.5);
     padding: 30px;
+    box-sizing: border-box;
     gap: 30px;
   }
 

@@ -20,7 +20,7 @@ const WithTransition: React.FC<ITransitionProps> = ({
       }}
       key={child.key}
     >
-      {React.cloneElement(child, {})}
+      {child}
     </CSSTransition>
   ))
 

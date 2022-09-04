@@ -1,5 +1,6 @@
 @import "~/scss/var.module";
 
+// post
 .post_enter,
 .post_exit {
   opacity: 0;
@@ -16,8 +17,28 @@
   max-height: 200px;
   transform: translateX(0);
 }
+// post
 
+// fade
+.fade_enter {
+  opacity: 0;
+}
+.fade_exit {
+  position: absolute;
+  top: $header-h;
+  display: none !important;
+}
+
+.fade_active {
+  opacity: 1;
+}
+// fade
+
+// ts speed
 .post_exit,
-.post_active {
+.post_active,
+.fade_exit,
+.fade_active {
   transition: all 500ms ease;
 }
+// ts speed

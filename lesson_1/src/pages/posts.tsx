@@ -15,11 +15,11 @@ const Posts: React.FC<IWithRoute> = () => {
   }
 
   return (
-    <>
+    <div>
       <Settings />
       <Pages {...props} />
       <List />
-    </>
+    </div>
   )
 }
 
