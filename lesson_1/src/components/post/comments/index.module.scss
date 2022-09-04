@@ -1,0 +1,36 @@
+@import "~/scss/var.module";
+
+.comments {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  padding-bottom: 30px;
+}
+
+.comment {
+  background-color: transparentize($violet, 0.8);
+  border-radius: 16px;
+  padding: 30px;
+  box-sizing: border-box;
+  &__email {
+    text-transform: uppercase;
+    padding-bottom: 10px;
+    position: relative;
+
+    i {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      position: absolute;
+      z-index: 0;
+      right: -16px;
+      top: -16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font: normal 0.8rem Verdana, Geneva, Tahoma, sans-serif;
+
+      background-color: transparentize($violet, 0.7);
+    }
+  }
+}

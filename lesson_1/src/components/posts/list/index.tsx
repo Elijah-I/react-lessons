@@ -9,9 +9,12 @@ import { fetchPosts } from "features/post/postThunk"
 import WithLoading from "hoc/withLoading"
 import WithTransition from "hoc/withTransition"
 import { useDispatch } from "hooks/useDispatch"
+import { useNavigate } from "react-router-dom"
 
 const List = () => {
   const dispatch = useDispatch()
+  const navigate = useNavigate()
+
   const {
     list,
     fetching,
@@ -36,12 +39,20 @@ const List = () => {
           </h2>
           <p>{post.body}</p>
         </div>
-        <Button
-          action={() => dispatch(deletePost(post.id))}
-          size="small"
-        >
-          delete
-        </Button>
+        <div className={style.posts__actions}>
+          <Button
+            action={() => navigate(`/posts/${post.id}`)}
+            size="small"
+          >
+            open
+          </Button>
+          <Button
+            action={() => dispatch(deletePost(post.id))}
+            size="small"
+          >
+            delete
+          </Button>
+        </div>
       </div>
     )
   })

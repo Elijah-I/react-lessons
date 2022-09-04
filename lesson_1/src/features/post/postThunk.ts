@@ -1,6 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit"
-import { IPostState, IPostAction, IThunkData } from "types"
 import PostService from "API/postService"
+import { IPostState, IPostAction, IThunkData, Post, PostComment } from "types"
 
 export const fetchPosts = createAsyncThunk(
   "post/fetchPosts",
@@ -9,18 +9,49 @@ export const fetchPosts = createAsyncThunk(
   }
 )
 
-const FP_fullfiled = (state: IPostState, action: { payload: IPostAction }) => {
-  state.fetching = false
+export const fetchPostById = createAsyncThunk(
+  "post/fetchPostById",
+  async (id: string) => {
+    return await PostService.getById(id)
+  }
+)
 
-  state.list = action.payload.data.map((el) => ({ ...el, show: true }))
-  state.pages.total = +action.payload.headers["x-total-count"]
-}
+export const fetchPostComments = createAsyncThunk(
+  "post/fetchPostComments",
+  async (id: string) => {
+    return await PostService.getComments(id)
+  }
+)
 
-const FP_pending = (state: IPostState) => {
+const pending = (state: IPostState) => {
   state.fetching = true
 }
 
 export const postThunk = (builder: any) => {
-  builder.addCase(fetchPosts.fulfilled, FP_fullfiled)
-  builder.addCase(fetchPosts.pending, FP_pending)
+  builder.addCase(
+    fetchPosts.fulfilled,
+    (state: IPostState, action: { payload: IPostAction }) => {
+      state.fetching = false
+      state.list = action.payload.data.map((el) => ({ ...el, show: true }))
+      state.pages.total = +action.payload.headers["x-total-count"]
+    }
+  )
+
+  builder.addCase(
+    fetchPostById.fulfilled,
+    (state: IPostState, action: { payload: Post }) => {
+      state.current = action.payload
+      state.fetching = false
+    }
+  )
+
+  builder.addCase(
+    fetchPostComments.fulfilled,
+    (state: IPostState, action: { payload: PostComment[] }) => {
+      state.current.comments = action.payload
+    }
+  )
+
+  builder.addCase(fetchPosts.pending, pending)
+  builder.addCase(fetchPostById.pending, pending)
 }

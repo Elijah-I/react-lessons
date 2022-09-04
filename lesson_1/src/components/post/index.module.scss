@@ -1,0 +1,19 @@
+@import "~/scss/var.module";
+
+.post {
+  &__content {
+    padding-bottom: 30px;
+    margin-bottom: 30px;
+    border-bottom: 1px dotted transparentize($violet, 0.5);
+  }
+  &__error {
+    width: 100%;
+    height: calc(100vh - $header-h);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 30px;
+    font-size: 1.5rem;
+    color: $violet;
+  }
+}

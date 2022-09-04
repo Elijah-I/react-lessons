@@ -30,6 +30,7 @@
 
   &__item {
     display: flex;
+    gap: 30px;
     justify-content: space-between;
     border-radius: 20px;
     padding: 30px;
@@ -63,5 +64,11 @@
     padding: 20px !important;
     transform: none !important;
     color: transparentize($violet, 0.5);
+  }
+
+  &__actions {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
   }
 }

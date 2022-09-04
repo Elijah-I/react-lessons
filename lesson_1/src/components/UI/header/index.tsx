@@ -1,5 +1,6 @@
 import React from "react"
 import { useMatch } from "react-router-dom"
+
 import { NavLink } from "react-router-dom"
 
 import { ILinkProps } from "types"
@@ -8,16 +9,16 @@ import style from "./index.module.scss"
 
 const Link: React.FC<ILinkProps> = ({ to, children }) => {
   let match = useMatch({
-    path: to,
-    end: true
+    path: `${to}/*`
   })
+
+  const classNM = [style.header__link]
+  if (match) classNM.push(style.header__link_selected)
 
   return (
     <NavLink
       to={to}
-      className={
-        style.header__link + " " + (match ? style.header__link_selected : "")
-      }
+      className={classNM.join(" ")}
     >
       {children}
     </NavLink>

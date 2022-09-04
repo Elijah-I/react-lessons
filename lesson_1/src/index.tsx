@@ -5,9 +5,11 @@ import * as ReactDOM from "react-dom/client"
 import store from "store"
 import "./scss/app.module"
 
+import Post from "pages/post"
 import Main from "pages/main"
-import Posts from "./pages/posts"
-import About from "./pages/about"
+import Posts from "pages/posts"
+import About from "pages/about"
+
 import Modal from "components/UI/modal"
 import Header from "components/UI/header"
 
@@ -20,6 +22,7 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
       <Modal />
       <WithRouter>
         <Header />
+        <Post route="/posts/:id" />
         <Posts route="/posts" />
         <About route="/about" />
         <Main route="/" />

@@ -4,6 +4,7 @@ import { postThunk } from "./postThunk"
 
 const initialState: IPostState = {
   list: [],
+  current: {} as Post,
   pages: {
     total: 1,
     limit: 10,
@@ -31,7 +32,7 @@ const postSlice = createSlice({
       localStorage.setItem("post.list", JSON.stringify(state.list))
     },
 
-    sortPosts: (state: IPostState, action: { payload: keyof Post }) => {
+    sortPosts: (state: IPostState, action: { payload: "title" | "body" }) => {
       state.list.sort((a, b) =>
         a[action.payload].toString().localeCompare(b[action.payload].toString())
       )

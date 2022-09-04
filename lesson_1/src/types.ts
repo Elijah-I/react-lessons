@@ -54,15 +54,23 @@ export interface ILoadingProps extends IWithChildren {
   loading: boolean
 }
 
+export type PostComment = {
+  email: string
+  body: string
+  id: number
+}
+
 export type Post = {
   id: number
   show: boolean
   title: string
   body: string
+  comments?: PostComment[]
 }
 
 export interface IPostState {
   list: Post[]
+  current: Post
   pages: {
     limit: number
     total: number
@@ -74,6 +82,11 @@ export interface IPostState {
 export interface IPostAction {
   data: Post[]
   headers: { "x-total-count": number }
+}
+
+export interface IPostProps {
+  current: Post
+  id: string
 }
 
 export interface IThunkData {
