@@ -2,6 +2,7 @@ import React from "react"
 import { IWithChildren } from "types"
 import {
   BrowserRouter as Router,
+  Navigate as Redirect,
   Routes as Switch,
   Route
 } from "react-router-dom"
@@ -19,6 +20,14 @@ const WithRouter: React.FC<IWithChildren> = ({ children }) => {
       )
     else offSwitch.push(child)
   })
+
+  content.push(
+    <Route
+      key="404"
+      path="*"
+      element={<Redirect to="/" />}
+    />
+  )
 
   return (
     <Router>

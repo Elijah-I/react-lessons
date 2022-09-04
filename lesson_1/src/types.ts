@@ -36,6 +36,11 @@ export interface IInputProps {
   callback: (e: InputEvent) => {} | void
 }
 
+export interface ILinkProps {
+  children: string
+  to: string
+}
+
 export interface ISelectProps extends IWithChildren {
   callback: (value: keyof Post) => void
 }
