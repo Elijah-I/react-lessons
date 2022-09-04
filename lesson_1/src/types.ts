@@ -8,10 +8,6 @@ export interface IWithChildren {
   children: JSX.Element | JSX.Element[]
 }
 
-export interface IWithRoute {
-  route: string
-}
-
 export type PagesCallback = {
   limit: number
   current: number

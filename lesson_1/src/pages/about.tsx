@@ -1,7 +1,6 @@
 import React from "react"
-import { IWithRoute } from "types"
 
-const About: React.FC<IWithRoute> = () => {
+const About = () => {
   return <h1>About page</h1>
 }
 
