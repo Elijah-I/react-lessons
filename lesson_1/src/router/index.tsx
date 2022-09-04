@@ -10,7 +10,7 @@ import Login from "pages/login"
 import WithTransition from "hoc/withTransition"
 
 const MyRoutes = () => {
-  const isAuth = true
+  const isAuth = false
   const location = useLocation()
 
   const privateRoutes = useMemo(
