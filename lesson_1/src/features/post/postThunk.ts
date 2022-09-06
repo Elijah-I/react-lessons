@@ -32,7 +32,10 @@ export const postThunk = (builder: any) => {
     fetchPosts.fulfilled,
     (state: IPostState, action: { payload: IPostAction }) => {
       state.fetching = false
-      state.list = action.payload.data.map((el) => ({ ...el, show: true }))
+      state.list = [
+        ...state.list,
+        ...action.payload.data.map((el) => ({ ...el, show: true }))
+      ]
       state.pages.total = +action.payload.headers["x-total-count"]
     }
   )

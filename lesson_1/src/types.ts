@@ -9,17 +9,6 @@ export interface IWithChildren {
   children: JSX.Element | JSX.Element[]
 }
 
-export type PagesCallback = {
-  limit: number
-  current: number
-}
-export interface IPagesProps {
-  total: number
-  limit: number
-  current: number
-  callback: (arg: PagesCallback) => any
-}
-
 export interface IButtonProps {
   size: "small" | "medium" | "large"
   children: string
@@ -94,6 +83,10 @@ export interface IPostAction {
 export interface IPostProps {
   current: Post
   id: string
+}
+
+export interface IPostListProps {
+  data: Post
 }
 
 export interface IThunkData {

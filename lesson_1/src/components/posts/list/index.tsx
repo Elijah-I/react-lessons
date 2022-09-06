@@ -1,19 +1,20 @@
 import React, { useEffect } from "react"
-import { useSelector } from "hooks/useSelector"
-
-import style from "../index.module.scss"
-import Button from "components/UI/button"
-import { deletePost } from "features/post/postSlice"
-import { fetchPosts } from "features/post/postThunk"
 
 import WithLoading from "hoc/withLoading"
 import WithTransition from "hoc/withTransition"
 import { useDispatch } from "hooks/useDispatch"
-import { useNavigate } from "react-router-dom"
+import { useSelector } from "hooks/useSelector"
+import { useRef } from "hooks/useRef"
+
+import style from "../index.module.scss"
+import { Loading } from "components/UI/loading"
+
+import { fetchPosts } from "features/post/postThunk"
+import Post from "./post"
+import { switchPage } from "features/post/postSlice"
 
 const List = () => {
   const dispatch = useDispatch()
-  const navigate = useNavigate()
 
   const {
     list,
@@ -21,60 +22,52 @@ const List = () => {
     pages: { limit, current }
   } = useSelector((state) => state.posts)
 
+  const firstLoad = !list.length && fetching
+  const nextLoad = !firstLoad && fetching
+
+  const observer = useRef()
+  const bottomRef = useRef()
+  const skipFirstLoad = useRef()
+
+  // prettier-ignore
+  const posts = list.length
+    ? list.map((data) => (<Post data={data} key={data.id} />))
+    : <div className={style.posts__null}>no posts yet</div>
+
   useEffect(() => {
     dispatch(fetchPosts({ limit, current }))
-  }, [])
+  }, [current])
 
-  const posts = list.map((post) => {
-    if (!post.show) return <div key={post.id}></div>
+  useEffect(() => {
+    if (fetching) return
+    if (observer.current) observer.current.disconnect(bottomRef.current)
 
-    return (
-      <div
-        key={post.id}
-        className={style.posts__item}
-      >
-        <div>
-          <h2>
-            {post.id}. {post.title}
-          </h2>
-          <p>{post.body}</p>
-        </div>
-        <div className={style.posts__actions}>
-          <Button
-            action={() => navigate(`/posts/${post.id}`)}
-            size="small"
-          >
-            open
-          </Button>
-          <Button
-            action={() => dispatch(deletePost(post.id))}
-            size="small"
-          >
-            delete
-          </Button>
-        </div>
-      </div>
-    )
-  })
+    observer.current = new IntersectionObserver(([item]) => {
+      if (item.isIntersecting && current < limit) {
+        skipFirstLoad.current = !skipFirstLoad.current
+        if (!skipFirstLoad.current) dispatch(switchPage(current + 1))
+      }
+    })
 
-  const posts_null = (
-    <div
-      key={0}
-      className={style.posts__null}
-    >
-      no posts yet
-    </div>
-  )
+    observer.current.observe(bottomRef.current)
+  }, [fetching])
 
   return (
-    <WithLoading loading={fetching}>
-      <WithTransition
-        classNM={style.posts}
-        classID="post"
-      >
-        {posts.length ? posts : posts_null}
-      </WithTransition>
-    </WithLoading>
+    <>
+      <WithLoading loading={firstLoad}>
+        <WithTransition
+          classNM={style.posts}
+          classID="post"
+        >
+          {posts}
+        </WithTransition>
+      </WithLoading>
+      <>{nextLoad && <Loading relative={true} />}</>
+      <div
+        className={style.bottomRef}
+        ref={bottomRef}
+      ></div>
+    </>
   )
 }
 

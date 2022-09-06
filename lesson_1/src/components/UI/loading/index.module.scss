@@ -17,6 +17,13 @@
   transform: translateZ(0);
   -webkit-animation: load6 1.7s infinite ease, round 1.7s infinite ease;
   animation: load6 1.7s infinite ease, round 1.7s infinite ease;
+
+  &_relative {
+    position: relative;
+    left: 0;
+    top: 0;
+    margin: 60px auto;
+  }
 }
 @-webkit-keyframes load6 {
   0% {
