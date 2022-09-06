@@ -1,4 +1,4 @@
-import React, { useMemo } from "react"
+import React, { useEffect, useMemo, useState } from "react"
 import { Routes, Route, useLocation, Navigate } from "react-router-dom"
 
 import Post from "pages/post"
@@ -8,44 +8,45 @@ import About from "pages/about"
 import Login from "pages/login"
 
 import WithTransition from "hoc/withTransition"
+import { useSelector } from "hooks/useSelector"
 
 const MyRoutes = () => {
-  const isAuth = false
   const location = useLocation()
+  const isAuth = useSelector((state) => state.auth.isAuth)
 
   const privateRoutes = useMemo(
     () => [
-      { path: "/", component: Main },
-      { path: "/about", component: About },
-      { path: "/posts", component: Posts },
-      { path: "/posts/:id", component: Post }
+      { path: "/", component: <Main /> },
+      { path: "/about", component: <About /> },
+      { path: "/posts", component: <Posts /> },
+      { path: "/posts/:id", component: <Post /> },
+      { path: "*", component: <Navigate to="/" /> }
     ],
     []
   )
 
   const publicRoutes = useMemo(
     () => [
-      { path: "/", component: Main },
-      { path: "/login", component: Login }
+      { path: "/", component: <Main /> },
+      { path: "/login", component: <Login /> },
+      { path: "*", component: <Navigate to="/" /> }
     ],
     []
   )
 
-  const routes = (isAuth ? privateRoutes : publicRoutes).map((route) => (
+  const final_routes = (isAuth ? privateRoutes : publicRoutes).map((route) => (
     <Route
       key={route.path}
       path={route.path}
-      element={route.component()}
+      element={route.component}
     />
   ))
 
-  routes.push(
-    <Route
-      key="404"
-      path="*"
-      element={<Navigate to="/" />}
-    />
-  )
+  const [routes, setRoutes] = useState(final_routes)
+
+  useEffect(() => {
+    setRoutes(final_routes)
+  }, [isAuth])
 
   return (
     <WithTransition

@@ -1,5 +1,5 @@
-import { IPostAction } from "types"
 import axios, { AxiosError } from "axios"
+import { IPostAction } from "types"
 
 export default class PostService {
   public static async getAll(_limit: number, _page: number) {

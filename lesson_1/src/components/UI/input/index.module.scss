@@ -1,6 +1,7 @@
 @import "~/scss/var.module";
 
-input[type="text"] {
+input[type="text"],
+input[type="password"] {
   outline: none;
   border: 1px solid transparentize($violet, 0.5);
   border-radius: 20px;

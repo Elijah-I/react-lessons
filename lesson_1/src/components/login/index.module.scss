@@ -1,0 +1,15 @@
+@import "~/scss/var.module";
+
+.login {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  padding-top: 30px;
+
+  input {
+    width: 300px;
+  }
+}

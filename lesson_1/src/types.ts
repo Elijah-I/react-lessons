@@ -1,6 +1,7 @@
 export type Dispatch = (value: string) => void
 export type DispatchBool = (value: boolean) => void
 
+export type LinkEvent = React.MouseEvent<HTMLElement>
 export type InputEvent = React.ChangeEvent<HTMLInputElement>
 export type SelectEvent = React.ChangeEvent<HTMLSelectElement>
 
@@ -33,8 +34,13 @@ export interface IInputProps {
 }
 
 export interface ILinkProps {
-  children: string
-  to: string
+  link: ILinkData
+}
+
+export interface ILinkData {
+  path: string
+  title: string
+  click?: (e: LinkEvent) => void
 }
 
 export interface ISelectProps extends IWithChildren {
@@ -62,6 +68,11 @@ export type Post = {
   title: string
   body: string
   comments?: PostComment[]
+}
+
+export interface IAuthState {
+  isAuth: boolean
+  fetching: boolean
 }
 
 export interface IPostState {

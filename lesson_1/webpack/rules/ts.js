@@ -1,5 +1,9 @@
 export const ts = {
-  test: /\.ts(x?)$/i,
-  exclude: /node_modules/,
-  loader: "ts-loader"
+  rules: [
+    {
+      test: /\.ts(x?)$/i,
+      exclude: /node_modules/,
+      use: ["ts-loader", "source-map-loader"]
+    }
+  ]
 }
